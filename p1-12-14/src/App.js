@@ -12,10 +12,18 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
+		
+	function getRandomArbitrary(min, max) {
+		console.log('random function is called')
+   	return Math.floor(Math.random() * (max - min) + min);
+	}
+	
+	
+	
   return (
 		<div>
 			<div>{anecdotes[selected]}</div>
-    	<button onClick={() => setSelected(selected + 1)}>Button</button>
+    	<button onClick={() => setSelected(getRandomArbitrary(0,6))}>Button</button>
 		</div>
 		
   )
