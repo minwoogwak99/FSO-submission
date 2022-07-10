@@ -11,22 +11,35 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.'
   ]
    
-  const [selected, setSelected] = useState(0)
+  const [selected, setSelected] = useState(0);
+	const [votes, setVote] = useState(Array(7).fill(0));
+	
+	const putVote = () => {
+		const copy = [...votes];
+		copy[selected] += 1;
 		
-	function getRandomArbitrary(min, max) {
-		console.log('random function is called')
-   	return Math.floor(Math.random() * (max - min) + min);
+		setVote(copy);
 	}
 	
-	
-	
+	console.log('array is : ', {votes});
+	console.log('selected value: ', {selected});
+		
   return (
 		<div>
 			<div>{anecdotes[selected]}</div>
-    	<button onClick={() => setSelected(getRandomArbitrary(0,6))}>Button</button>
+    	<button onClick={() => setSelected(getRandomArbitrary(0,6))}>Get another quote</button>
+			<div>vote counts: {votes[selected]}</div>
+			<div>
+				<button onClick={() => putVote()}>Vote</button>
+			</div>
 		</div>
-		
   )
 }
+
+
+function getRandomArbitrary(min, max) {
+		console.log('random function is called');
+   	return Math.floor(Math.random() * (max - min) + min);
+	}
 
 export default App
