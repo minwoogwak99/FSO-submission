@@ -1,22 +1,4 @@
-const Course =({course}) => {
-	return (
-		<div>
-			<h1>{course.name}</h1>
-			<div>
-				{course.parts.map(course => 
-					<Content key={course.id} course={course}/>	
-				)}
-			</div>
-		</div>		
-	)
-
-}
-
-const Content = ({course}) => {
-	return (
-		<div>{course.name} {course.exercises}</div>
-	)
-}
+import Course from './compoenents/Course'
 
 const App = () => {
   const course = {
@@ -37,7 +19,12 @@ const App = () => {
         name: 'State of a component',
         exercises: 14,
         id: 3
-      }
+      },
+			{
+				name: 'Redux',
+				exercises: 11,
+				id: 4
+			}
     ]
   }
 
