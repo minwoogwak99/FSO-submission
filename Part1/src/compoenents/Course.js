@@ -1,37 +1,39 @@
 import React from 'react'
 
-const Course =({course}) => {
+const Courses = ({courses}) => {
+	
+
+	
 	return (
 		<div>
-			<h1>{course.name}</h1>
-			<div>
-				{course.parts.map(course => 
-					<Content key={course.id} course={course}/>	
-				)}
-			</div>
-      <div><Sum key={course.parts.id} course={course}/></div>
-
-		</div>		
-	)
-
+			<h1>Web development curriculum</h1>
+			<ShowCourse course={courses[0]}/>
+			<ShowTotal parts={courses[0].parts}/>
+			<ShowCourse course={courses[1]}/>
+			<ShowTotal parts={courses[1].parts}/>
+		</div>
+	) 
 }
 
-const Content = ({course}) => {
+const ShowCourse = ({course}) => {
 	return (
-		<div>{course.name} {course.exercises}</div>
+		<div>
+			<h2>{course.name}</h2>
+			{course.parts.map(part => {
+				return (
+					<div key={part.id}>{part.name} {part.exercises}</div>
+				)
+			})}
+		</div>
+	) 
+}
+
+const ShowTotal = ({parts}) => {
+	const sum = parts.reduce((s, p) => s + p.exercises, 0)
+	
+	return (
+			<strong>Total of {sum} exercises</strong>
 	)
 }
 
-const Sum = ({course}) => {
-  const sum = course.parts.reduce((s, p) => {
-    console.log('total :', s.exercises)
-    console.log('valule to add: ', p.exercises)
-    return s + p.exercises
-  }, 0)
-
-  return (
-    <div>total of {sum} exercises</div>
-  )
-}
-
-export default Course
+export default Courses
